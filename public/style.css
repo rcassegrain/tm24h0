@@ -1,0 +1,396 @@
+:root {
+    --size-ref: 1rem;
+    --scale-factor-min-width640: 0.85;
+    --scale-factor-max-width640: 0.5;
+    --scale-factor-min-width960: 0.85;
+    --scale-factor-min-width1100: 1;
+    --size-ref-h1: calc(3*var(--size-ref));
+    --size-ref-h2: calc(var(--size-ref));
+    --size-ref-p: calc(0.75*var(--size-ref));
+    --size-textbox-width: calc(30*var(--size-ref));
+    --size-textbox-height: calc(20*var(--size-ref));
+    --size-button-width: calc(13*var(--size-ref));
+    --size-button-height: calc(2*var(--size-ref));
+    --size-body-font: calc(1*var(--size-ref));
+    --size-button-font: calc(var(--size-ref));
+    --size-border-radius: calc(0.5*var(--size-ref));
+    --size-padding-side: calc(var(--size-ref));
+    --size-padding: calc(0.5*var(--size-ref));
+    --size-margin: calc(0.25*var(--size-ref));
+    --size-border-width: calc(0.15*var(--size-ref));
+    --size-form-font: calc(1*var(--size-ref));
+    --size-form-label: calc(15*var(--size-ref));
+    --size-form-input: calc(10*var(--size-ref));
+    --size-form-input-admin: calc(600*var(--size-ref));
+    --size-img-height: calc(16*var(--size-ref));
+    --size-img-table-height: calc(var(--size-ref));
+    --size-img-banner-height: calc(6*var(--size-ref));
+    --size-img-solar-height: calc(40*var(--size-ref));
+}
+
+* {
+    font-size:100%;
+    margin: var(--size-margin);
+    padding: var(--size-paddingn);
+    box-sizing: border-box;
+}
+
+header, footer {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color:white;
+    text-align: center;
+    border: solid;
+    border-color: black;
+}
+
+body {
+    background-color: #7EBEC5;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+@media (max-width: 640px) {
+    h1 {font-size:calc(var(--size-ref-h1)*var(--scale-factor-max-width640));}
+    h2, .horlohge {font-size:calc(var(--size-ref-h2)*var(--scale-factor-max-width640));}
+    p {font-size:calc(var(--size-ref-p)*var(--scale-factor-max-width640));}
+    .button .horloge, header, footer {
+        font-size: calc(var(--size-button-font)*var(--scale-factor-max-width640));
+        border-radius: calc(var(--size-border-radius)*var(--scale-factor-max-width640));
+        border-width: calc(var(--size-border-width)*var(--scale-factor-max-width640));
+        padding: calc(var(--size-padding)*var(--scale-factor-max-width640)) calc(var(--size-padding-side)*var(--scale-factor-max-width640));
+    }
+    body {
+        font-size: calc(var(--size-body-font)*var(--scale-factor-max-width640));
+    }
+    .form-activation, .msg {
+        font-size: calc(var(--size-form-font)*var(--scale-factor-max-width640));
+    }
+    .input-form {
+        width: calc(var(--size-form-input)*var(--scale-factor-max-width640));
+    }
+    .imput-form-admin {
+        width: calc(var(--size-form-input-admin)*var(--scale-factor-max-width640));
+    }
+    .labelform {
+        float: left;
+        width: calc(var(--size-form-label)*var(--scale-factor-max-width640));
+    }
+    .pictures {
+        height: calc(var(--size-img-height)*var(--scale-factor-max-width640));
+        width: auto;
+    }
+    .pictures-table {
+        height: calc(var(--size-img-table-height)*var(--scale-factor-max-width640));
+        width: auto;
+    }
+    .picture-solar {
+        height: calc(var(--size-img-solar-height)*var(--scale-factor-max-width640));
+        width: auto;
+    }
+    .picture-banner {
+        height: calc(var(--size-img-banner-height)*var(--scale-factor-max-width640));
+        width: auto;
+    }
+    .table, thead, th, td {
+        font-size: calc(var(--size-body-font)*var(--scale-factor-max-width640));
+        border-width: calc(var(--size-border-width)*var(--scale-factor-max-width640));
+    }
+}
+
+@media (min-width: 640px) {
+    h1 {font-size:calc(var(--size-ref-h1)*var(--scale-factor-min-width640));}
+    h2, .horlohge {font-size:calc(var(--size-ref-h2)*var(--scale-factor-min-width640));}
+    p {font-size:calc(var(--size-ref-p)*var(--scale-factor-min-width640));}
+    .button .horloge, header, footer {
+        font-size: calc(var(--size-button-font)*var(--scale-factor-min-width640));
+        border-radius: calc(var(--size-border-radius)*var(--scale-factor-min-width640));
+        border-width: calc(var(--size-border-width)*var(--scale-factor-min-width640));
+        padding: calc(var(--size-padding)*var(--scale-factor-min-width640)) calc(var(--size-padding-side)*var(--scale-factor-min-width640));
+    }
+    body {
+        font-size: calc(var(--size-body-font)*var(--scale-factor-min-width640));
+    }
+    .form-activation, .msg {
+        font-size: calc(var(--size-form-font)*var(--scale-factor-min-width640));
+    }
+    .input-form {
+        width: calc(var(--size-form-input)*var(--scale-factor-min-width640));
+    }
+    .imput-form-admin {
+        width: calc(var(--size-form-input-admin)*var(--scale-factor-min-width640));
+    }
+    .labelform {
+        float: left;
+        width: calc(var(--size-form-label)*var(--scale-factor-min-width640));
+    }
+    .pictures {
+        height: calc(var(--size-img-height)*var(--scale-factor-min-width640));
+        width: auto;
+    }
+    .pictures-table {
+        height: calc(var(--size-img-table-height)*var(--scale-factor-min-width640));
+        width: auto;
+    }
+    .picture-solar {
+        height: calc(var(--size-img-solar-height)*var(--scale-factor-min-width640));
+        width: auto;
+    }
+    .picture-banner {
+        height: calc(var(--size-img-banner-height)*var(--scale-factor-min-width640));
+        width: auto;
+    }
+    .table, thead, th, td {
+        font-size: calc(var(--size-body-font)*var(--scale-factor-min-width640));
+        border-width: calc(var(--size-border-width)*var(--scale-factor-min-width640));
+    }
+}
+
+@media (min-width:960px) {
+    h1 {font-size:calc(var(--size-ref-h1)*var(--scale-factor-min-width960));}
+    h2, .horlohge {font-size:calc(var(--size-ref-h2)*var(--scale-factor-min-width960));}
+    p {font-size:calc(var(--size-ref-p)*var(--scale-factor-min-width960));}
+    .button .horloge, header, footer {
+        font-size: calc(var(--size-button-font)*var(--scale-factor-min-width960));
+        border-radius: calc(var(--size-border-radius)*var(--scale-factor-min-width960));
+        border-width: calc(var(--size-border-width)*var(--scale-factor-min-width960));
+        padding: calc(var(--size-padding)*var(--scale-factor-min-width960)) calc(var(--size-padding-side)*var(--scale-factor-min-width960));
+    }
+    body {
+        font-size: calc(var(--size-body-font)*var(--scale-factor-min-width960));
+    }
+    .form-activation, .msg {
+        font-size: calc(var(--size-form-font)*var(--scale-factor-min-width960));
+    }
+    .input-form {
+        width: calc(var(--size-form-input)*var(--scale-factor-min-width960));
+    }
+    .imput-form-admin {
+        width: calc(var(--size-form-input-admin)*var(--scale-factor-min-width960));
+    }
+    .labelform {
+        float: left;
+        width: calc(var(--size-form-label)*var(--scale-factor-min-width960));
+    }
+    .pictures {
+        height: calc(var(--size-img-height)*var(--scale-factor-min-width960));
+        width: auto;
+    }
+    .pictures-table {
+        height: calc(var(--size-img-table-height)*var(--scale-factor-min-width960));
+        width: auto;
+    }
+    .picture-solar {
+        height: calc(var(--size-img-solar-height)*var(--scale-factor-min-width960));
+        width: auto;
+    }
+    .picture-banner {
+        height: calc(var(--size-img-banner-height)*var(--scale-factor-min-width960));
+        width: auto;
+    }
+    .table, thead, th, td {
+        font-size: calc(var(--size-body-font)*var(--scale-factor-min-width960));
+        border-width: calc(var(--size-border-width)*var(--scale-factor-min-width960));
+    }
+}
+
+@media (min-width:1100px) {
+    h1 {font-size:calc(var(--size-ref-h1)*var(--scale-factor-min-width1100));}
+    h2, .horlohge {font-size:calc(var(--size-ref-h2)*var(--scale-factor-min-width1100));}
+    p {font-size:calc(var(--size-ref-p)*var(--scale-factor-min-width1100));}
+    .button, .horloge, header, footer {
+        font-size: calc(var(--size-button-font)*var(--scale-factor-min-width1100));
+        border-radius: calc(var(--size-border-radius)*var(--scale-factor-min-width1100));
+        border-width: calc(var(--size-border-width)*var(--scale-factor-min-width1100));
+        padding: calc(var(--size-padding)*var(--scale-factor-min-width1100)) calc(var(--size-padding-side)*var(--scale-factor-min-width1100));
+    }
+    body {
+        font-size: calc(var(--size-body-font)*var(--scale-factor-min-width1100));
+    }
+    .form-activation, .msg {
+        font-size: calc(var(--size-form-font)*var(--scale-factor-min-width1100));
+    }
+    .input-form {
+        width: calc(var(--size-form-input)*var(--scale-factor-min-width1100));
+    }
+    .imput-form-admin {
+        width: calc(var(--size-form-input-admin)*var(--scale-factor-min-width1100));
+    }
+    .labelform {
+        float: left;
+        width: calc(var(--size-form-label)*var(--scale-factor-min-width1100));
+    }
+    .pictures {
+        height: calc(var(--size-img-height)*var(--scale-factor-min-width1100));
+        width: auto;
+    }
+    .pictures-table {
+        height: calc(var(--size-img-table-height)*var(--scale-factor-min-width1100));
+        width: auto;
+    }
+    .picture-solar {
+        height: calc(var(--size-img-solar-height)*var(--scale-factor-min-width1100));
+        width: auto;
+    }
+    .picture-banner {
+        height: calc(var(--size-img-banner-height)*var(--scale-factor-min-width1100));
+        width: auto;
+    }
+    .table, thead, th, td {
+        font-size: calc(var(--size-body-font)*var(--scale-factor-min-width1100));
+        border-width: calc(var(--size-border-width)*var(--scale-factor-min-width1100));
+    }
+}
+
+h1 {
+    color: black;
+    font-family: "Wallpoet", Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: underline;
+}
+
+h2 {
+    color: black;
+    font-weight: bold;
+    text-align:left;
+}
+
+.msg {
+    color: red;
+    font-weight: bold;
+    text-align:left;
+}
+
+.button {
+    width: auto;
+    height: auto;
+    display: block;
+    margin-right: auto;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    border-style: solid;
+    border-color: white;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+.button:hover {
+    background-color: white;
+    color: black;
+    border-color: black;
+}
+
+.button:active {
+    background-color:lightgray;
+    color: black;
+    border-color: black;
+}
+
+.form-activation {
+    background-color: #7EBEC5;
+    color: black;
+    font-weight: normal;
+    text-align: left;
+    border-style: none;
+    border-color: #000000;
+    cursor: text;
+    position: static;
+}
+
+.container-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    text-align: center;
+}
+
+.table-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto;
+    text-align: center;
+}
+
+.table {
+    table-layout: fixed;
+    border-collapse: collapse;
+    border: solid black;
+    text-align: center;
+    margin: auto;
+}
+
+thead {
+    width: fit-content;
+    height :fit-content;
+    background-color: black;
+    border: white;
+    color: white;
+}
+
+th, td {
+    border: solid black;
+    width: fit-content;
+    height :fit-content;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: lightgray;
+}
+  
+tbody tr:nth-child(even) {
+    background-color: white;
+}
+
+.records {
+    text-align: center;
+    text-decoration: underline;
+}
+
+.pwd-container {
+    position: relative;
+}
+
+.pwd-container input {
+    padding-right: 1.5rem;
+    transition: all 0.2s;
+}
+
+.pwd-container .password-icon {
+    display: flex;
+    position: absolute;
+    top: 40%;
+    right: 3%;
+    transform: translateY(-60%);
+    width: 15%;
+    color: black;
+    transition: all 0.2s;
+}
+
+.pwd-container .password-icon:hover {
+    cursor: pointer;
+    color: #0066CC;
+}
+  
+.pwd-container .password-icon .feather-eye-off {
+    display: none;
+}
+
+input[type=text]:valid, input[type=password]:valid, input[type=number]:valid {
+    background-color: palegreen;
+}
+  
+input[type=text]:invalid, input[type=password]:invalid, input[type=number]:invalid {
+    background-color: lightpink;
+}
+
+.horloge {
+    display: block;
+    width: auto;
+    height: auto;
+    font-family:"Sixtyfour Convergence", Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color:#F27069;
+    background-color: black;
+    border: solid #F27069;
+}
