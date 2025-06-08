@@ -85,7 +85,7 @@ class DataBaseTM24h {
      */
     public static function SetPwdTM24h(string $pwd) {
         $pdo = self::setPDO();
-        $query = $pdo->prepare('UPDATE pwd_tm24h SET pwdtm24h = :pwd WHERE Idpwdtm24h = 0');
+        $query = $pdo->prepare('UPDATE logkfi_pwd_tm24h SET pwdtm24h = :pwd WHERE Idpwdtm24h = 0');
         $query->bindValue(':pwd', password_hash($pwd, PASSWORD_BCRYPT), PDO::PARAM_STR);
         $query->execute();
         $pdo = self::closePDO();
@@ -97,7 +97,7 @@ class DataBaseTM24h {
      */
     public static function resetBDTM24h() {
         $pdo = self::setPDO();
-        $query = $pdo->prepare('DELETE FROM data_tm24h');
+        $query = $pdo->prepare('DELETE FROM logkfi_data_tm24h');
         $query->execute();
         $pdo = self::closePDO();
     }
@@ -162,9 +162,9 @@ class OMTM24h {
         $callsign = $this->getCallsign();
         $password = $this->getPassword();
         $pdo = DataBaseTM24h::setPDO();
-        $stmtuser = $pdo->prepare('SELECT omtm24h FROM om_tm24h WHERE omtm24h = :callsign');
+        $stmtuser = $pdo->prepare('SELECT omtm24h FROM logkfi_om_tm24h WHERE omtm24h = :callsign');
         $stmtuser->bindValue(':callsign', $callsign, PDO::PARAM_STR);
-        $stmtpwd = $pdo->prepare('SELECT pwdtm24h FROM pwd_tm24h');
+        $stmtpwd = $pdo->prepare('SELECT pwdtm24h FROM logkfi_pwd_tm24h');
         $stmtuser->execute();
         $user = $stmtuser->fetchall(PDO::FETCH_COLUMN);
         if(empty($user)) {
@@ -356,12 +356,12 @@ class DataTM24h {
         date_default_timezone_set('UTC');
         $status = $this->getStatus();
         $date = date_create()->format('Y-m-d H:i:s');
-        $idcallsign = $this->getData($callsign, "om_tm24h", "omtm24h", "idomtm24h");
-        $idband = $this->getData($band, "band_tm24h", "bandtm24h", "idbandtm24h");
-        $idmode = $this->getData($mode, "mode_tm24h", "modetm24h", "Idmodetm24h");
+        $idcallsign = $this->getData($callsign, "logkfi_om_tm24h", "omtm24h", "idomtm24h");
+        $idband = $this->getData($band, "logkfi_band_tm24h", "bandtm24h", "idbandtm24h");
+        $idmode = $this->getData($mode, "logkfi_mode_tm24h", "modetm24h", "Idmodetm24h");
         // Checking if activation already done.
         $pdo = DataBaseTM24h::setPDO();
-        $query = $pdo->prepare('SELECT * FROM data_tm24h WHERE fkIdbandtm24h = :band AND fkidmodetm24h = :mode AND fkidomtm24h = :callsign AND datafreq = :frequence');
+        $query = $pdo->prepare('SELECT * FROM logkfi_data_tm24h WHERE fkIdbandtm24h = :band AND fkidmodetm24h = :mode AND fkidomtm24h = :callsign AND datafreq = :frequence');
         $query->bindValue(':band', $idband, PDO::PARAM_INT);
         $query->bindValue(':mode', $idmode, PDO::PARAM_INT);
         $query->bindValue(':callsign', $idcallsign, PDO::PARAM_INT);
@@ -374,7 +374,7 @@ class DataTM24h {
             // Activation to be executed.
             if($status=="Active") {
                 $pdo = DataBaseTM24h::setPDO();
-                $query = $pdo->prepare('INSERT INTO data_tm24h(fkIdbandtm24h, fkidmodetm24h, fkidomtm24h, datafreq, dataactivationstart, datastatus) VALUES(:band, :mode, :callsign, :frequence, :date, :status)');
+                $query = $pdo->prepare('INSERT INTO logkfi_data_tm24h(fkIdbandtm24h, fkidmodetm24h, fkidomtm24h, datafreq, dataactivationstart, datastatus) VALUES(:band, :mode, :callsign, :frequence, :date, :status)');
                 $query->bindValue(':band', $idband, PDO::PARAM_INT);
                 $query->bindValue(':mode', $idmode, PDO::PARAM_INT);
                 $query->bindValue(':callsign', $idcallsign, PDO::PARAM_INT);
@@ -392,7 +392,7 @@ class DataTM24h {
                 show_message("Activation déjà effectuée.", false);
             } else {
                 $pdo = DataBaseTM24h::setPDO();
-                $query = $pdo->prepare('SELECT dataactivationstart, dataactivationend FROM data_tm24h WHERE fkIdbandtm24h = :band AND fkidmodetm24h = :mode AND fkidomtm24h = :callsign AND datafreq = :frequence');
+                $query = $pdo->prepare('SELECT dataactivationstart, dataactivationend FROM logkfi_data_tm24h WHERE fkIdbandtm24h = :band AND fkidmodetm24h = :mode AND fkidomtm24h = :callsign AND datafreq = :frequence');
                 $query->bindValue(':band', $idband, PDO::PARAM_INT);
                 $query->bindValue(':mode', $idmode, PDO::PARAM_INT);
                 $query->bindValue(':callsign', $idcallsign, PDO::PARAM_INT);
@@ -404,7 +404,7 @@ class DataTM24h {
                     $status = false;
                 }
                 $pdo = DataBaseTM24h::setPDO();
-                $query = $pdo->prepare('UPDATE data_tm24h SET dataactivationend = :date, datastatus = :status WHERE (IdData = :id)');
+                $query = $pdo->prepare('UPDATE logkfi_data_tm24h SET dataactivationend = :date, datastatus = :status WHERE (IdData = :id)');
                 $query->bindValue(':date', $date, PDO::PARAM_STR);
                 $query->bindValue(':status', $status, PDO::PARAM_BOOL);
                 $query->bindValue(':id', $result[0], PDO::PARAM_INT);
@@ -420,7 +420,7 @@ class DataTM24h {
      */
     public function GetDataTM24h(): array {
         $pdo = DataBaseTM24h::setPDO();
-        $query = $pdo->prepare('SELECT fkIdbandtm24h, fkidmodetm24h, fkidomtm24h, datafreq, dataactivationstart, dataactivationend, datastatus FROM data_tm24h ORDER BY fkIdbandtm24h, fkidmodetm24h, fkidomtm24h ASC');
+        $query = $pdo->prepare('SELECT fkIdbandtm24h, fkidmodetm24h, fkidomtm24h, datafreq, dataactivationstart, dataactivationend, datastatus FROM logkfi_data_tm24h ORDER BY fkIdbandtm24h, fkidmodetm24h, fkidomtm24h ASC');
         $query->execute();
         $result = $query->fetchall(PDO::FETCH_NUM);
         $pdo = DataBaseTM24h::closePDO();
@@ -430,17 +430,17 @@ class DataTM24h {
                     if($i<=2) {
                         switch ($i) {
                             case 0:
-                                $table = "band_tm24h";
+                                $table = "logkfi_band_tm24h";
                                 $column = "idbandtm24h";
                                 $idvalue = "bandtm24h";
                                 break;
                             case 1:
-                                $table = "mode_tm24h";
+                                $table = "logkfi_mode_tm24h";
                                 $column = "idmodetm24h";
                                 $idvalue = "modetm24h";
                                 break;
                             case 2:
-                                $table = "om_tm24h";
+                                $table = "logkfi_om_tm24h";
                                 $column = "idomtm24h";
                                 $idvalue = "omtm24h";
                                 break;
@@ -476,9 +476,9 @@ class DataTM24h {
      */
     public function GetDataTM24hOM(): array {
         $callsign = $this->getCallsign();
-        $idcallsign = $this->getData($callsign, "om_tm24h", "omtm24h", "idomtm24h");
+        $idcallsign = $this->getData($callsign, "logkfi_om_tm24h", "omtm24h", "idomtm24h");
         $pdo = DataBaseTM24h::setPDO();
-        $query = $pdo->prepare('SELECT fkidbandtm24h, fkidmodetm24h, datafreq, dataactivationstart, dataactivationend FROM data_tm24h WHERE fkidomtm24h = :callsign AND dataactivationstart <> "NULL" AND dataactivationend <> "NULL" ORDER BY fkidbandtm24h, fkidmodetm24h ASC');
+        $query = $pdo->prepare('SELECT fkidbandtm24h, fkidmodetm24h, datafreq, dataactivationstart, dataactivationend FROM logkfi_data_tm24h WHERE fkidomtm24h = :callsign AND dataactivationstart <> "NULL" AND dataactivationend <> "NULL" ORDER BY fkidbandtm24h, fkidmodetm24h ASC');
         $query->bindValue(':callsign', $idcallsign, PDO::PARAM_INT);
         $query->execute();
         $result = $query->fetchall(PDO::FETCH_NUM);
@@ -489,12 +489,12 @@ class DataTM24h {
                     if($i<=1) {
                         switch ($i) {
                             case 0:
-                                $table = "band_tm24h";
+                                $table = "logkfi_band_tm24h";
                                 $column = "idbandtm24h";
                                 $idvalue = "bandtm24h";
                                 break;
                             case 1:
-                                $table = "mode_tm24h";
+                                $table = "logkfi_mode_tm24h";
                                 $column = "idmodetm24h";
                                 $idvalue = "modetm24h";
                                 break;
@@ -519,10 +519,10 @@ class DataTM24h {
      * @return array : returns an array with all set of data.
      */
     public function getDataStaticTable(string $band, string $mode): array {
-        $idband = $this->getData($band, "band_tm24h", "bandtm24h", "idbandtm24h");
-        $idmode = $this->getData($mode, "mode_tm24h", "modetm24h", "Idmodetm24h");
+        $idband = $this->getData($band, "logkfi_band_tm24h", "bandtm24h", "idbandtm24h");
+        $idmode = $this->getData($mode, "logkfi_mode_tm24h", "modetm24h", "Idmodetm24h");
         $pdo = DataBaseTM24h::setPDO();
-        $query = $pdo->prepare('SELECT fkidbandtm24h, fkidmodetm24h, fkidomtm24h, datafreq, dataactivationstart, dataactivationend, datastatus FROM data_tm24h WHERE (fkIdbandtm24h = :band AND fkidmodetm24h = :mode)');
+        $query = $pdo->prepare('SELECT fkidbandtm24h, fkidmodetm24h, fkidomtm24h, datafreq, dataactivationstart, dataactivationend, datastatus FROM logkfi_data_tm24h WHERE (fkIdbandtm24h = :band AND fkidmodetm24h = :mode)');
         $query->bindValue(':band', $idband, PDO::PARAM_INT);
         $query->bindValue(':mode', $idmode, PDO::PARAM_INT);
         $query->execute();
@@ -536,17 +536,17 @@ class DataTM24h {
                 if($i<=2) {
                     switch ($i) {
                         case 0:
-                            $table = "band_tm24h";
+                            $table = "logkfi_band_tm24h";
                             $column = "idbandtm24h";
                             $idvalue = "bandtm24h";
                             break;
                         case 1:
-                            $table = "mode_tm24h";
+                            $table = "logkfi_mode_tm24h";
                             $column = "idmodetm24h";
                             $idvalue = "modetm24h";
                             break;
                         case 2:
-                            $table = "om_tm24h";
+                            $table = "logkfi_om_tm24h";
                             $column = "idomtm24h";
                             $idvalue = "omtm24h";
                             break;

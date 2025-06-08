@@ -32,7 +32,7 @@
             <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post" class="form-activation" autocomplete="off" target="_top">
                 <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'];?>">
                 <label for="callsign" class="labelform">Indicatif : </label>
-                <span><?php echo generateList("om_tm24h", "omtm24h", "callsign");?></span><br>
+                <span><?php echo generateList("logkfi_om_tm24h", "omtm24h", "callsign");?></span><br>
                 <label for="pwd" class="labelform">Mot de passe : </label>
                 <span class="pwd-container">
                     <input type="password" name="pwd" id="pwd" class="input-form" value="<?php echo $_SESSION['pwd'];?>" required minlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" title="Minimum 8 caractères incluant : 1 majuscule + 1 minuscule + 1 chiffre + 1 caractère special (#?!@$%^&*-)." autocomplete="new-password">
@@ -44,9 +44,9 @@
                     <script>feather.replace();</script>
                 </span><br>
                 <label for="band" class="labelform">Bande : </label>
-                <span><?php echo generateList("band_tm24h", "bandtm24h", "band");?></span><br>
+                <span><?php echo generateList("logkfi_band_tm24h", "bandtm24h", "band");?></span><br>
                 <label for="mode" class="labelform">Mode : </label>
-                <span><?php echo generateList("mode_tm24h", "modetm24h", "mode");?></span><br>
+                <span><?php echo generateList("logkfi_mode_tm24h", "modetm24h", "mode");?></span><br>
                 <label for="frequence" class="labelform">Fréquence (MHz) : </label>
                 <span><input type="number" step="0.0001" name="frequence" id="frequence" class="input-form" value="<?php echo $_SESSION['frequence'];?>" maxlength="9" pattern="^(?!)[0-9]{0,4}([\.,][0-9]{0,4}$"></span><br>
                 <label for="status" class="labelform">Etat : </label>
@@ -62,7 +62,7 @@
     </div>
     <div>
         <h2>Liste des opérateurs autorisés à activer (locator : JN07CX) : <br>
-        <?php echo implode(", ", DataBaseTM24h::GetListBD("om_tm24h", "omtm24h"));?></h2>
+        <?php echo implode(", ", DataBaseTM24h::GetListBD("logkfi_om_tm24h", "omtm24h"));?></h2>
     </div><br>
     <div class="table-grid">
         <a href="https://www.hamqsl.com/solar.html"><img src="https://www.hamqsl.com/solarn0nbh.php" alt="Solar-Terrestrial Data" class="picture-solar" role="Solar-Terrestrial Data"></a>

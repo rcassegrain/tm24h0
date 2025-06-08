@@ -116,8 +116,8 @@ function showOMDataTM24h(string $callsign): string {
  * @return string
  */
 function showStaticTable(): string {
-    $listband = DataBaseTM24h::GetListBD("band_tm24h", "bandtm24h");
-    $listmode = DataBaseTM24h::GetListBD("mode_tm24h", "modetm24h");
+    $listband = DataBaseTM24h::GetListBD("logkfi_band_tm24h", "bandtm24h");
+    $listmode = DataBaseTM24h::GetListBD("logkfi_mode_tm24h", "modetm24h");
     $DataTM24h = new DataTM24h("", "", "", "", 0, false);
     foreach($listband as $i => $linelistband) {
         foreach($listmode as $j => $linelistmode) {
@@ -175,7 +175,7 @@ if (($_SERVER['REQUEST_METHOD'] === 'POST') && !empty($_POST)) {
         else {
             // Checking if the entered frequency is within the allowable range.
             $pdo = DataBaseTM24h::setPDO();
-            $query = $pdo->prepare('SELECT bandtm24hmin, bandtm24hmax FROM band_tm24h WHERE bandtm24h = :band');
+            $query = $pdo->prepare('SELECT bandtm24hmin, bandtm24hmax FROM logkfi_band_tm24h WHERE bandtm24h = :band');
             $query->bindValue(':band', $band, PDO::PARAM_STR);
             $query->execute();
             $result = $query->fetchall(PDO::FETCH_NUM);

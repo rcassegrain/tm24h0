@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : sam. 07 juin 2025 à 09:39
+-- Généré le : dim. 08 juin 2025 à 14:50
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `band_tm24h`
+-- Structure de la table `logkfi_band_tm24h`
 --
 
-CREATE TABLE `band_tm24h` (
+CREATE TABLE `logkfi_band_tm24h` (
   `idbandtm24h` int(2) NOT NULL,
   `bandtm24h` varchar(5) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `bandtm24hmin` float(8,4) NOT NULL,
@@ -35,10 +35,10 @@ CREATE TABLE `band_tm24h` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `band_tm24h`
+-- Déchargement des données de la table `logkfi_band_tm24h`
 --
 
-INSERT INTO `band_tm24h` (`idbandtm24h`, `bandtm24h`, `bandtm24hmin`, `bandtm24hmax`) VALUES
+INSERT INTO `logkfi_band_tm24h` (`idbandtm24h`, `bandtm24h`, `bandtm24hmin`, `bandtm24hmax`) VALUES
 (0, '80 m', 3.5000, 3.8000),
 (1, '60 m', 5.3515, 5.3665),
 (2, '40 m', 7.0000, 7.2000),
@@ -59,10 +59,10 @@ INSERT INTO `band_tm24h` (`idbandtm24h`, `bandtm24h`, `bandtm24hmin`, `bandtm24h
 -- --------------------------------------------------------
 
 --
--- Structure de la table `data_tm24h`
+-- Structure de la table `logkfi_data_tm24h`
 --
 
-CREATE TABLE `data_tm24h` (
+CREATE TABLE `logkfi_data_tm24h` (
   `IdData` int(11) NOT NULL,
   `fkIdbandtm24h` int(2) NOT NULL,
   `fkidmodetm24h` int(1) NOT NULL,
@@ -73,22 +73,30 @@ CREATE TABLE `data_tm24h` (
   `datastatus` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Déchargement des données de la table `logkfi_data_tm24h`
+--
+
+INSERT INTO `logkfi_data_tm24h` (`IdData`, `fkIdbandtm24h`, `fkidmodetm24h`, `fkidomtm24h`, `datafreq`, `dataactivationstart`, `dataactivationend`, `datastatus`) VALUES
+(1, 4, 1, 12, 14.1500, '2025-06-07 07:41:15', '2025-06-07 07:41:31', 0),
+(2, 4, 5, 12, 14.2200, '2025-06-08 11:49:49', '2025-06-08 11:50:10', 0);
+
 -- --------------------------------------------------------
 
 --
--- Structure de la table `mode_tm24h`
+-- Structure de la table `logkfi_mode_tm24h`
 --
 
-CREATE TABLE `mode_tm24h` (
+CREATE TABLE `logkfi_mode_tm24h` (
   `Idmodetm24h` int(2) NOT NULL,
   `modetm24h` varchar(4) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `mode_tm24h`
+-- Déchargement des données de la table `logkfi_mode_tm24h`
 --
 
-INSERT INTO `mode_tm24h` (`Idmodetm24h`, `modetm24h`) VALUES
+INSERT INTO `logkfi_mode_tm24h` (`Idmodetm24h`, `modetm24h`) VALUES
 (0, 'AM'),
 (1, 'SSB'),
 (2, 'USB'),
@@ -99,19 +107,19 @@ INSERT INTO `mode_tm24h` (`Idmodetm24h`, `modetm24h`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `om_tm24h`
+-- Structure de la table `logkfi_om_tm24h`
 --
 
-CREATE TABLE `om_tm24h` (
+CREATE TABLE `logkfi_om_tm24h` (
   `idomtm24h` int(2) NOT NULL,
   `omtm24h` varchar(5) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `om_tm24h`
+-- Déchargement des données de la table `logkfi_om_tm24h`
 --
 
-INSERT INTO `om_tm24h` (`idomtm24h`, `omtm24h`) VALUES
+INSERT INTO `logkfi_om_tm24h` (`idomtm24h`, `omtm24h`) VALUES
 (0, 'F1BJD'),
 (1, 'F1HTU'),
 (2, 'F1PGZ'),
@@ -142,19 +150,19 @@ INSERT INTO `om_tm24h` (`idomtm24h`, `omtm24h`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `pwd_tm24h`
+-- Structure de la table `logkfi_pwd_tm24h`
 --
 
-CREATE TABLE `pwd_tm24h` (
+CREATE TABLE `logkfi_pwd_tm24h` (
   `Idpwdtm24h` int(1) NOT NULL,
   `pwdtm24h` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `pwd_tm24h`
+-- Déchargement des données de la table `logkfi_pwd_tm24h`
 --
 
-INSERT INTO `pwd_tm24h` (`Idpwdtm24h`, `pwdtm24h`) VALUES
+INSERT INTO `logkfi_pwd_tm24h` (`Idpwdtm24h`, `pwdtm24h`) VALUES
 (0, '$2y$10$Jv/OhawCxCA7hhIfGtbzzuv7s7QdGFXPvWq08KreMWHe4xcvwYPfC');
 
 --
@@ -162,36 +170,36 @@ INSERT INTO `pwd_tm24h` (`Idpwdtm24h`, `pwdtm24h`) VALUES
 --
 
 --
--- Index pour la table `band_tm24h`
+-- Index pour la table `logkfi_band_tm24h`
 --
-ALTER TABLE `band_tm24h`
+ALTER TABLE `logkfi_band_tm24h`
   ADD PRIMARY KEY (`idbandtm24h`);
 
 --
--- Index pour la table `data_tm24h`
+-- Index pour la table `logkfi_data_tm24h`
 --
-ALTER TABLE `data_tm24h`
+ALTER TABLE `logkfi_data_tm24h`
   ADD PRIMARY KEY (`IdData`),
   ADD KEY `fkIdbandtm24h` (`fkIdbandtm24h`),
   ADD KEY `fkIdmodetm24h` (`fkidmodetm24h`),
   ADD KEY `fkIdomtm24h` (`fkidomtm24h`);
 
 --
--- Index pour la table `mode_tm24h`
+-- Index pour la table `logkfi_mode_tm24h`
 --
-ALTER TABLE `mode_tm24h`
+ALTER TABLE `logkfi_mode_tm24h`
   ADD PRIMARY KEY (`Idmodetm24h`);
 
 --
--- Index pour la table `om_tm24h`
+-- Index pour la table `logkfi_om_tm24h`
 --
-ALTER TABLE `om_tm24h`
+ALTER TABLE `logkfi_om_tm24h`
   ADD PRIMARY KEY (`idomtm24h`);
 
 --
--- Index pour la table `pwd_tm24h`
+-- Index pour la table `logkfi_pwd_tm24h`
 --
-ALTER TABLE `pwd_tm24h`
+ALTER TABLE `logkfi_pwd_tm24h`
   ADD PRIMARY KEY (`Idpwdtm24h`);
 
 --
@@ -199,22 +207,22 @@ ALTER TABLE `pwd_tm24h`
 --
 
 --
--- AUTO_INCREMENT pour la table `data_tm24h`
+-- AUTO_INCREMENT pour la table `logkfi_data_tm24h`
 --
-ALTER TABLE `data_tm24h`
-  MODIFY `IdData` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `logkfi_data_tm24h`
+  MODIFY `IdData` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Contraintes pour les tables déchargées
 --
 
 --
--- Contraintes pour la table `data_tm24h`
+-- Contraintes pour la table `logkfi_data_tm24h`
 --
-ALTER TABLE `data_tm24h`
-  ADD CONSTRAINT `fkIdbandtm24h` FOREIGN KEY (`fkIdbandtm24h`) REFERENCES `band_tm24h` (`idbandtm24h`),
-  ADD CONSTRAINT `fkIdmodetm24h` FOREIGN KEY (`fkidmodetm24h`) REFERENCES `mode_tm24h` (`Idmodetm24h`),
-  ADD CONSTRAINT `fkIdomtm24h` FOREIGN KEY (`fkidomtm24h`) REFERENCES `om_tm24h` (`IDOMTM24H`);
+ALTER TABLE `logkfi_data_tm24h`
+  ADD CONSTRAINT `fkIdbandtm24h` FOREIGN KEY (`fkIdbandtm24h`) REFERENCES `logkfi_band_tm24h` (`idbandtm24h`),
+  ADD CONSTRAINT `fkIdmodetm24h` FOREIGN KEY (`fkidmodetm24h`) REFERENCES `logkfi_mode_tm24h` (`Idmodetm24h`),
+  ADD CONSTRAINT `fkIdomtm24h` FOREIGN KEY (`fkidomtm24h`) REFERENCES `logkfi_om_tm24h` (`IDOMTM24H`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
